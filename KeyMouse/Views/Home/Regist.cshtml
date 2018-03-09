@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "注册";
+    Layout = "";
+}
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>注册ლ(′◉❥◉｀ლ)</title>
+    <link rel="icon" type="image/png" href="../../PIC/favicon.png" />
+    <link rel="apple-touch-icon-precomposed" href="../../PIC/app-icon72x72@2x.png" />
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="../../Content/CSS/amazeui.min.css" />
+    <link rel="stylesheet" href="../../Content/CSS/admin.css" />
+    <link rel="stylesheet" href="../../Content/CSS/app.css" />
+    <script src="../../Content/JS/jquery.min.js"></script>
+    <script src="../../Content/JS/jquery.json-2.3.min.js"></script>
+    <script src="../../Content/JS/jquery.json-2.3.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //注册按钮
+            $('#btnSave').click(function () {
+                var phone1 = $('#doc-ipt-tel-1').val();
+                var partten = /^1[3,5,8]\d{9}$/;
+                if ($('#doc-ipt-tel-1').val() == "" || $('#doc-ipt-tel-1').val().length != 11) {
+                    alert("手机号码输入格式不正确");
+                    return;
+                }
+                else if (!(partten.test(phone1))) {
+                    alert("手机号码输入正确格式手机号码");
+                    return;
+                }
+                if ($('#doc-ipt-name-1').val() == "") {
+                    alert("用户名不能为空!");
+                    return;
+                }
+                if ($('#doc-ipt-name-1').val().length < 2 || $('#doc-ipt-name-1').val().length > 16) {
+                    alert("用户名位4-16字符");
+                    return;
+                }
+                if ($('#doc-ipt-pwd-1').val() != $('#doc-ipt-pwd-2').val()) {
+                    $('#doc-ipt-pwd-2').focus();
+                    alert("两次密码不一致！");
+                    return;
+                }
+
+                var article = GetArticle();
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json;utf-8",
+                    url: "/Home/Save",
+                    data: "{json:'" + $.toJSON(article) + "'}",
+                    dataType: "",
+                    success: function (data, textStatus) {
+                        if (data === "existed") {
+                            alert("该用户已注册！");
+                            $('#doc-ipt-tel-1').val('');
+                            $('#doc-ipt-name-1').val('');
+                            $('#doc-ipt-pwd-1').val('');
+                            $('#doc-ipt-pwd-2').val('');
+                        }
+                        else if (data == "success") {
+                            alert("注册成功！");
+                            $('#doc-ipt-tel-1').val('');
+                            $('#doc-ipt-name-1').val('');
+                            $('#doc-ipt-pwd-1').val('');
+                            $('#doc-ipt-pwd-2').val('');
+                        }
+                        else {
+                            alert(data);
+                        }
+                    },
+                    complete: function (XMLHttpRequest, textStatus) {
+                        //HideLoading();
+                    },
+                    error: function (statusText, responseText) {
+                        //请求出错处理
+                        alert(statusText.responseText);
+                    }
+                });
+            });
+        });
+        function GetArticle() {
+
+            var article = new Object();
+            //还有成员类型
+            article.phone = $("#doc-ipt-tel-1").val();
+            article.user = $("#doc-ipt-name-1").val();
+            article.passwd = $("#doc-ipt-pwd-1").val();
+            return article;
+        }
+    </script>
+</head>
+
+
+<body data-type="login">
+    <div class="am-g myapp-login">
+        <div class="myapp-login-logo-block  tpl-login-max">
+            <div class="myapp-login-logo-text">
+                <div class="myapp-login-logo-text">
+                    <span> 注册星球ID(*╯3╰)</span>
+                </div>
+            </div>
+            <div class="login-font">            </div>
+            <div class="am-u-sm-10 login-am-center">
+                <form class="am-form">
+                    <fieldset>
+                        <div class="am-form-group">
+                            <input type="tel" class="" id="doc-ipt-tel-1" placeholder="你的电话" />
+                        </div>
+                        <div class="am-form-group">
+                            <input style="border-radius: 0px; " type="text" class="" id="doc-ipt-name-1" placeholder="你的姓名" />
+                        </div>
+                        <div class="am-form-group">
+                            <input style="border-radius: 0px; " type="password" class="" id="doc-ipt-pwd-1" placeholder="你的符文" />
+                        </div>
+                        <div class="am-form-group">
+                            <input type="password" class="" id="doc-ipt-pwd-2" placeholder="确认符文" />
+                        </div>
+                        <p><a id="btnSave" class="am-btn am-btn-default">注册</a></p>
+                    </fieldset>
+                    <div class="login-font" style="text-align:right">
+                        <span> 已有ID？</span><a href="../Home/Logon"><i>返回登录</i></a>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

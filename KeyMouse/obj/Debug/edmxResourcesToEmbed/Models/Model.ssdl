@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KeyMouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="dl_basic_user">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userphone" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="username" Type="varchar" MaxLength="50" />
+    <Property Name="userpwd" Type="varchar" MaxLength="50" />
+    <Property Name="jointime" Type="datetime" />
+    <Property Name="isDel" Type="bit" />
+    <Property Name="comment" Type="varchar" MaxLength="50" />
+    <Property Name="option1" Type="varchar" MaxLength="50" />
+    <Property Name="option2" Type="varchar" MaxLength="50" />
+    <Property Name="option3" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sys_function">
+    <Key>
+      <PropertyRef Name="fid" />
+    </Key>
+    <Property Name="fid" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pid" Type="int" />
+    <Property Name="function" Type="varchar" MaxLength="50" />
+    <Property Name="title" Type="varchar" MaxLength="50" />
+    <Property Name="control" Type="varchar" MaxLength="50" />
+    <Property Name="functionname" Type="varchar" MaxLength="50" />
+    <Property Name="parameters" Type="varchar" MaxLength="50" />
+    <Property Name="order" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="level" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="url" Type="varchar" MaxLength="50" />
+    <Property Name="option1" Type="varchar" MaxLength="50" />
+    <Property Name="option2" Type="varchar" MaxLength="50" />
+    <Property Name="option3" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sys_role">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rolename" Type="varchar" MaxLength="50" />
+    <Property Name="url" Type="varchar" MaxLength="50" />
+    <Property Name="option1" Type="varchar" MaxLength="50" />
+    <Property Name="option2" Type="varchar" MaxLength="50" />
+    <Property Name="option3" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“KeyMouse.dbo.sys_role_function”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="sys_role_function">
+    <Key>
+      <PropertyRef Name="fid" />
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="fid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="rid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="url" Type="varchar" MaxLength="50" />
+    <Property Name="option1" Type="varchar" MaxLength="50" />
+    <Property Name="option2" Type="varchar" MaxLength="50" />
+    <Property Name="option3" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sys_user_role">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="userid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="url" Type="varchar" MaxLength="50" />
+    <Property Name="option1" Type="varchar" MaxLength="50" />
+    <Property Name="option2" Type="varchar" MaxLength="50" />
+    <Property Name="option3" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_f_data">
+    <Key>
+      <PropertyRef Name="did" />
+    </Key>
+    <Property Name="did" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="content" Type="varchar" MaxLength="50" />
+    <Property Name="comment" Type="varchar" MaxLength="50" />
+    <Property Name="starttime" Type="datetime" />
+    <Property Name="endtime" Type="datetime" />
+    <Property Name="option1" Type="varchar" MaxLength="50" />
+    <Property Name="option2" Type="varchar" MaxLength="50" />
+    <Property Name="option3" Type="varchar" MaxLength="50" />
+    <Property Name="option4" Type="varchar" MaxLength="50" />
+    <Property Name="option5" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_f_keymou">
+    <Key>
+      <PropertyRef Name="kmid" />
+    </Key>
+    <Property Name="kmid" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="typekm" Type="varchar" MaxLength="50" />
+    <Property Name="action" Type="varchar" MaxLength="50" />
+    <Property Name="value" Type="varchar" MaxLength="50" />
+    <Property Name="starttime" Type="datetime" />
+    <Property Name="time" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="relation" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="flag" Type="varchar" MaxLength="50" />
+    <Property Name="additional" Type="varchar" MaxLength="50" />
+    <Property Name="option1" Type="varchar" MaxLength="50" />
+    <Property Name="option2" Type="varchar" MaxLength="50" />
+    <Property Name="option3" Type="varchar" MaxLength="50" />
+    <Property Name="option4" Type="varchar" MaxLength="50" />
+    <Property Name="option5" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_f_userlogin">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="logintime" Type="datetime" />
+    <Property Name="exittime" Type="datetime" />
+    <Property Name="add_ip" Type="varchar" MaxLength="50" />
+    <Property Name="computer" Type="varchar" MaxLength="50" />
+    <Property Name="localland" Type="varchar" MaxLength="50" />
+    <Property Name="temperature" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="option1" Type="varchar" MaxLength="50" />
+    <Property Name="option2" Type="varchar" MaxLength="50" />
+    <Property Name="option3" Type="varchar" MaxLength="50" />
+    <Property Name="option4" Type="varchar" MaxLength="50" />
+    <Property Name="option5" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="KeyMouseModelStoreContainer">
+    <EntitySet Name="dl_basic_user" EntityType="Self.dl_basic_user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_function" EntityType="Self.sys_function" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_role" EntityType="Self.sys_role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_user_role" EntityType="Self.sys_user_role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_f_data" EntityType="Self.t_f_data" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_f_keymou" EntityType="Self.t_f_keymou" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_f_userlogin" EntityType="Self.t_f_userlogin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sys_role_function" EntityType="Self.sys_role_function" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sys_role_function].[fid] AS [fid], 
+    [sys_role_function].[rid] AS [rid], 
+    [sys_role_function].[url] AS [url], 
+    [sys_role_function].[option1] AS [option1], 
+    [sys_role_function].[option2] AS [option2], 
+    [sys_role_function].[option3] AS [option3]
+    FROM [dbo].[sys_role_function] AS [sys_role_function]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

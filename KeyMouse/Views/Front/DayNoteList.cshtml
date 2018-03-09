@@ -1,0 +1,100 @@
+﻿@using KeyMouse.Models;
+@{
+    Layout = "~/Views/Shared/_Header.cshtml";
+}
+
+<div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+        任务（目前还不能编辑和删除日记）
+    </div>
+    <ol class="am-breadcrumb">
+        <li><a href="#" class="am-icon-home">任务</a></li>
+        <li><a href="#">我的日记</a></li>
+        <li class="am-active">列表</li>
+    </ol>
+    <div class="tpl-portlet-components">
+        
+        <div class="tpl-block">
+            
+            <div class="am-g">
+                <div class="am-u-sm-12">
+                    <form class="am-form">
+                        <table class="am-table am-table-striped am-table-hover table-main">
+                            <thead>
+                                <tr>
+                                    <th class="table-id" style="display:none">ID</th>
+                                    <th class="table-date am-hide-sm-only">日期</th>
+                                    <th class="table-title">内容</th>
+                                    <th class="table-set">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    decimal userid = SystemParam.CurrentUser.userid;
+                                    if (true)
+                                    {
+                                        var db = new KeyMouseEntities();
+                                        var root = (from a in db.t_f_data
+                                                    where a.userid == userid
+                                                    select new
+                                                    {
+                                                        did = a.did,
+                                                        content = (a.content).Substring(0, 20),
+                                                        endtime = a.endtime
+                                                    }).Distinct().OrderByDescending(ob => ob.did).Take(50).ToList();
+                                        foreach (var p in root)
+                                        { 
+                                            <tr>
+                                                <td style="display:none">@(p.did)</td>
+                                                <td class="am-hide-sm-only">@(p.endtime)</td>
+                                                 <td><a onclick="newsback(@p.did)">@(p.content)</a></td>
+                                                <td>
+                                                    <div class="am-btn-toolbar">
+                                                        <div class="am-btn-group am-btn-group-xs">
+                                                            <button onclick="onRowSelected_edit(@(p.did))" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                                                            <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                        <div class="am-cf">
+                            <div class="am-fr">
+                                <ul class="am-pagination tpl-pagination">
+                                    <li class="am-disabled"><a href="#">«</a></li>
+                                    <li class="am-active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">»</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="tpl-alert"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    function newsback(pid) {
+        if (pid == "") {
+            return;
+        }
+        else {
+            window.location.href = "/Front/DayNotePage?pid=" + pid;
+        }
+    }
+</script>
+
+
+

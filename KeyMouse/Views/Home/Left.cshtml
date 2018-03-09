@@ -1,0 +1,79 @@
+﻿@using KeyMouse.Models;
+@{
+    Layout = null;
+}
+<div class="tpl-left-nav tpl-left-nav-hover">
+        <div class="tpl-left-nav-title">
+            Just Do Something!
+        </div>
+        <div class="tpl-left-nav-list">
+            <ul class="tpl-left-nav-menu">
+
+                @{if (SystemParam.CurrentUser != null)
+                    {
+                        var db = new KeyMouseEntities();
+
+                        decimal userid = SystemParam.CurrentUser.userid;
+
+                        decimal rid = 0, rid1 = 0;
+
+                        if (db.sys_user_role.FirstOrDefault(s => s.userid == userid) != null)
+
+                        { rid1 = db.sys_user_role.FirstOrDefault(s => s.userid == userid).rid; }
+
+                        rid = rid1;
+
+                        var root = (from e in db.sys_role_function
+                                    join o in db.sys_function on e.fid equals o.fid
+                                    where e.rid == rid && o.pid == 0
+                                    select new
+                                    {
+                                        o.fid,
+                                        o.function,
+                                        o.order
+                                    }).Distinct().OrderBy(ob => ob.order);
+                      
+                            foreach (var p in root)
+                            {
+                                <li class="tpl-left-nav-item" style="">
+                                    <a href="javascript:void(0)" class="nav-link tpl-left-nav-link-list">
+                                        <i class="am-icon-heart"></i>
+                                        <span>@(p.function)</span>
+                                    </a>
+                                    <ul class="tpl-left-nav-sub-menu" style="display:inline">
+
+                                        @{
+                                var chid = from e in db.sys_role_function
+                                           join o in db.sys_function on e.fid equals o.fid
+                                           where e.rid == rid && o.pid == p.fid
+                                           select o;
+                                        }
+                                        @foreach (var c in chid.OrderBy(o => o.order))
+                                        {
+                                            <li>
+                                                <a href="@(string.Format("/{0}/{1}", c.control, c.functionname))">
+                                                    <i class="am-icon-angle-right"></i>
+                                                    <span>@(c.function)</span>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+
+
+
+                                </li>
+                            }
+                        
+                    }
+                }
+                </ul>
+        </div>
+</div>
+<script type="text/javascript">
+    var contents = document.getElementsByClassName('content');
+    var toggles = document.getElementsByClassName('type');
+
+    var myAccordion = new fx.Accordion(toggles, contents, { opacity: true, duration: 400 });
+    myAccordion.showThisHideOpen(contents[0]);
+</script>
+

@@ -1,0 +1,92 @@
+﻿@model KeyMouse.Models.UserRole
+@{
+    Layout = "~/Views/Shared/_Header.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+        $('#btnSave').click(function () {
+            var newPassword = $('#userpwd1').val();
+            if ($('#userpwd').val() == "" || $('#userpwd1').val() == "" || $('#userpwd2').val() == "") {
+                alert("密码不能为空！");
+                return;
+            }
+            if ($('#userpwd').val() == $('#userpwd1').val()) {
+                alert("新密码和原密码一致!");
+                return;
+            }
+            if ($('#userpwd1').val() != $('#userpwd2').val()) {
+                alert("密码不一致");
+                return;
+            }
+            $.post("/Front/SaveNewPassword/?newPassword=" + newPassword +
+                                                  "&old=" + $('#userpwd').val() +
+                                                  "&userid=" + $('#userid').val(), function (result) {
+                                                      if (result.IsSucceed) {
+
+                                                          alert("保存成功！");
+                                                          $('#userpwd').val('');
+                                                          $('#userpwd1').val('');
+                                                          $('#userpwd2').val('');
+                                                          setInterval(displaymessage, 3000);
+                                                      }
+                                                      else {
+                                                          alert("保存失败！");
+                                                          $('#userpwd').val('');
+                                                          $('#userpwd1').val('');
+                                                          $('#userpwd2').val('');
+                                                      }
+
+                                                  });
+        });
+
+    });
+
+</script>
+<div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+        你的资料
+    </div>
+
+    <ol class="am-breadcrumb">
+        <li><a href="#" class="am-icon-user">资料</a></li>
+        <li class="am-active">修改密码</li>
+    </ol>
+    <div class="tpl-portlet-components">
+        <div class="tpl-block ">
+            <div class="am-g tpl-amazeui-form">
+                <div class="am-u-sm-12 am-u-md-9">
+                    <form class="am-form am-form-horizontal">
+                        <input style=" display:none;" type="text" id="userid" value="@ViewData["userid"]">
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">初始密码</label>
+                            <div class="am-u-sm-9">
+                                <input type="password" id="userpwd" placeholder="输入你的初始密码。" value="">
+                                <small></small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">新密码</label>
+                            <div class="am-u-sm-9">
+                                <input type="password" id="userpwd1" placeholder="输入你的新密码。" value="">
+                                <small></small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">确认新密码</label>
+                            <div class="am-u-sm-9">
+                                <input type="password" id="userpwd2" placeholder="确认你的新密码。" value="">
+                                <small></small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button id="btnSave" type="button" class="am-btn am-btn-primary">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

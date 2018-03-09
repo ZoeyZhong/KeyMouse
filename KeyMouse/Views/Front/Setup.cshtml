@@ -1,0 +1,128 @@
+﻿@model KeyMouse.Models.UserRole
+@{
+    Layout = "~/Views/Shared/_Header.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+        $("#btnSave").click(function () {
+            if ($("#username").val() == "") {
+                alert("请填写姓名！");
+                return;
+            }
+            if (!confirm("您确认要保存吗？")) {
+                return;
+            }
+            var article = GetArticle();
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;utf-8",
+                url: "/Front/SaveM",
+                data: "{json:'" + $.toJSON(article) + "'}",
+                dataType: "",
+                success: function (data, textStatus) {
+                    if (data == "success") {
+                        alert("修改成功！");
+                    }
+                    else {
+                        alert(data);
+                    }
+                },
+                complete: function (XMLHttpRequest, textStatus) {
+                    //HideLoading();
+                },
+                error: function (statusText, responseText) {
+                    //请求出错处理
+                    alert(statusText.responseText);
+                }
+            });
+        });
+    });
+
+    // 获取所有信息
+    function GetArticle() {
+        var article = new Object();
+        article.userid = $("#userid").val();
+        article.username = $("#username").val();
+        article.userphone = $("#userphone").val();
+        article.comment = $("#comment").val();
+        article.option1 = $("#option1").val();
+        return article;
+    }
+</script>
+<div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+        你的资料
+    </div>
+    
+    <ol class="am-breadcrumb">
+        <li><a href="#" class="am-icon-user">资料</a></li>
+        @*<li><a href="#">表单</a></li>*@
+        <li class="am-active">修改资料</li>
+    </ol>
+    <div class="tpl-portlet-components">
+        <div class="caption font-green bold"> 完善你的资料吧！(๑′ᴗ‵๑)❤</div>
+        <!--搜索栏start-->
+        <div class="portlet-title">
+            <div class="tpl-portlet-input tpl-fz-ml">
+                <div class="portlet-input input-small input-inline">
+                    <div class="input-icon right">
+                        <i class="am-icon-search"></i>
+                        <input type="text" class="form-control form-control-solid" placeholder="搜索...">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--搜索栏end-->
+        <div class="tpl-block ">
+            <div class="am-g tpl-amazeui-form">
+                <div class="am-u-sm-12 am-u-md-9">
+                    <form class="am-form am-form-horizontal">
+                        <input style=" display:none;" type="text" id="userid" value="@ViewData["userid"]">
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">姓名 / Name</label>
+                            <div class="am-u-sm-9">
+                                <input  type="text" id="username" placeholder="输入你的名字，让我们记住你。" value="@ViewData["username"]">
+                                <small></small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-phone" class="am-u-sm-3 am-form-label">电话 / Telephone</label>
+                            <div class="am-u-sm-9">
+                                <input disabled="disabled" type="tel" id="userphone" placeholder="输入你的电话号码" value="@ViewData["userphone"]">
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-email" class="am-u-sm-3 am-form-label">电子邮件 / Email</label>
+                            <div class="am-u-sm-9">
+                                <input type="email" id="option1" placeholder="输入你的电子邮件" value="@ViewData["option1"]">
+                                <small></small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-phone" class="am-u-sm-3 am-form-label">加入时间 / JoinTime</label>
+                            <div class="am-u-sm-9">
+                                <input disabled="disabled" type="tel" id="jointime" value="@ViewData["jointime"]">
+                            </div>
+                        </div>
+                       
+
+                        <div class="am-form-group">
+                            <label for="user-intro" class="am-u-sm-3 am-form-label">简介 / Intro</label>
+                            <div class="am-u-sm-9">
+                                <textarea class="" rows="5" id="comment" placeholder="输入个人简介" >@ViewData["comment"]</textarea>
+                                <small>250字以内写出你的一生...</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button id="btnSave" type="button" class="am-btn am-btn-primary">保存修改</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

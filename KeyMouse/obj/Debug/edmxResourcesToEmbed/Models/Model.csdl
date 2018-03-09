@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KeyMouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="KeyMouseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="dl_basic_user" EntityType="KeyMouseModel.dl_basic_user" />
+    <EntitySet Name="sys_function" EntityType="KeyMouseModel.sys_function" />
+    <EntitySet Name="sys_role" EntityType="KeyMouseModel.sys_role" />
+    <EntitySet Name="sys_user_role" EntityType="KeyMouseModel.sys_user_role" />
+    <EntitySet Name="t_f_data" EntityType="KeyMouseModel.t_f_data" />
+    <EntitySet Name="t_f_keymou" EntityType="KeyMouseModel.t_f_keymou" />
+    <EntitySet Name="t_f_userlogin" EntityType="KeyMouseModel.t_f_userlogin" />
+    <EntitySet Name="sys_role_function" EntityType="KeyMouseModel.sys_role_function" />
+  </EntityContainer>
+  <EntityType Name="dl_basic_user">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userphone" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userpwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="jointime" Type="DateTime" Precision="3" />
+    <Property Name="isDel" Type="Boolean" />
+    <Property Name="comment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sys_function">
+    <Key>
+      <PropertyRef Name="fid" />
+    </Key>
+    <Property Name="fid" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pid" Type="Int32" />
+    <Property Name="function" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="control" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="functionname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="parameters" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="order" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="level" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sys_role">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rolename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sys_user_role">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="userid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_f_data">
+    <Key>
+      <PropertyRef Name="did" />
+    </Key>
+    <Property Name="did" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="content" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="comment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="starttime" Type="DateTime" Precision="3" />
+    <Property Name="endtime" Type="DateTime" Precision="3" />
+    <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_f_keymou">
+    <Key>
+      <PropertyRef Name="kmid" />
+    </Key>
+    <Property Name="kmid" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="typekm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="starttime" Type="DateTime" Precision="3" />
+    <Property Name="time" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="relation" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="flag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="additional" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_f_userlogin">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="logintime" Type="DateTime" Precision="3" />
+    <Property Name="exittime" Type="DateTime" Precision="3" />
+    <Property Name="add_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="computer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="localland" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="temperature" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sys_role_function">
+    <Key>
+      <PropertyRef Name="fid" />
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="fid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="rid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

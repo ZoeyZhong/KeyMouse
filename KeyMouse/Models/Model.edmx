@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KeyMouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="dl_basic_user">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userphone" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="userpwd" Type="varchar" MaxLength="50" />
+          <Property Name="jointime" Type="datetime" />
+          <Property Name="isDel" Type="bit" />
+          <Property Name="comment" Type="varchar" MaxLength="50" />
+          <Property Name="option1" Type="varchar" MaxLength="50" />
+          <Property Name="option2" Type="varchar" MaxLength="50" />
+          <Property Name="option3" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sys_function">
+          <Key>
+            <PropertyRef Name="fid" />
+          </Key>
+          <Property Name="fid" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pid" Type="int" />
+          <Property Name="function" Type="varchar" MaxLength="50" />
+          <Property Name="title" Type="varchar" MaxLength="50" />
+          <Property Name="control" Type="varchar" MaxLength="50" />
+          <Property Name="functionname" Type="varchar" MaxLength="50" />
+          <Property Name="parameters" Type="varchar" MaxLength="50" />
+          <Property Name="order" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="level" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="url" Type="varchar" MaxLength="50" />
+          <Property Name="option1" Type="varchar" MaxLength="50" />
+          <Property Name="option2" Type="varchar" MaxLength="50" />
+          <Property Name="option3" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sys_role">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rolename" Type="varchar" MaxLength="50" />
+          <Property Name="url" Type="varchar" MaxLength="50" />
+          <Property Name="option1" Type="varchar" MaxLength="50" />
+          <Property Name="option2" Type="varchar" MaxLength="50" />
+          <Property Name="option3" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“KeyMouse.dbo.sys_role_function”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="sys_role_function">
+          <Key>
+            <PropertyRef Name="fid" />
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="fid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="rid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="50" />
+          <Property Name="option1" Type="varchar" MaxLength="50" />
+          <Property Name="option2" Type="varchar" MaxLength="50" />
+          <Property Name="option3" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sys_user_role">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="userid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="50" />
+          <Property Name="option1" Type="varchar" MaxLength="50" />
+          <Property Name="option2" Type="varchar" MaxLength="50" />
+          <Property Name="option3" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="t_f_data">
+          <Key>
+            <PropertyRef Name="did" />
+          </Key>
+          <Property Name="did" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="content" Type="varchar" MaxLength="50" />
+          <Property Name="comment" Type="varchar" MaxLength="50" />
+          <Property Name="starttime" Type="datetime" />
+          <Property Name="endtime" Type="datetime" />
+          <Property Name="option1" Type="varchar" MaxLength="50" />
+          <Property Name="option2" Type="varchar" MaxLength="50" />
+          <Property Name="option3" Type="varchar" MaxLength="50" />
+          <Property Name="option4" Type="varchar" MaxLength="50" />
+          <Property Name="option5" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="t_f_keymou">
+          <Key>
+            <PropertyRef Name="kmid" />
+          </Key>
+          <Property Name="kmid" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="typekm" Type="varchar" MaxLength="50" />
+          <Property Name="action" Type="varchar" MaxLength="50" />
+          <Property Name="value" Type="varchar" MaxLength="50" />
+          <Property Name="starttime" Type="datetime" />
+          <Property Name="time" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="relation" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="flag" Type="varchar" MaxLength="50" />
+          <Property Name="additional" Type="varchar" MaxLength="50" />
+          <Property Name="option1" Type="varchar" MaxLength="50" />
+          <Property Name="option2" Type="varchar" MaxLength="50" />
+          <Property Name="option3" Type="varchar" MaxLength="50" />
+          <Property Name="option4" Type="varchar" MaxLength="50" />
+          <Property Name="option5" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="t_f_userlogin">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="logintime" Type="datetime" />
+          <Property Name="exittime" Type="datetime" />
+          <Property Name="add_ip" Type="varchar" MaxLength="50" />
+          <Property Name="computer" Type="varchar" MaxLength="50" />
+          <Property Name="localland" Type="varchar" MaxLength="50" />
+          <Property Name="temperature" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="option1" Type="varchar" MaxLength="50" />
+          <Property Name="option2" Type="varchar" MaxLength="50" />
+          <Property Name="option3" Type="varchar" MaxLength="50" />
+          <Property Name="option4" Type="varchar" MaxLength="50" />
+          <Property Name="option5" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="KeyMouseModelStoreContainer">
+          <EntitySet Name="dl_basic_user" EntityType="Self.dl_basic_user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_function" EntityType="Self.sys_function" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_role" EntityType="Self.sys_role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_user_role" EntityType="Self.sys_user_role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_f_data" EntityType="Self.t_f_data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_f_keymou" EntityType="Self.t_f_keymou" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_f_userlogin" EntityType="Self.t_f_userlogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_role_function" EntityType="Self.sys_role_function" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sys_role_function].[fid] AS [fid], 
+    [sys_role_function].[rid] AS [rid], 
+    [sys_role_function].[url] AS [url], 
+    [sys_role_function].[option1] AS [option1], 
+    [sys_role_function].[option2] AS [option2], 
+    [sys_role_function].[option3] AS [option3]
+    FROM [dbo].[sys_role_function] AS [sys_role_function]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KeyMouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="KeyMouseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="dl_basic_user" EntityType="KeyMouseModel.dl_basic_user" />
+          <EntitySet Name="sys_function" EntityType="KeyMouseModel.sys_function" />
+          <EntitySet Name="sys_role" EntityType="KeyMouseModel.sys_role" />
+          <EntitySet Name="sys_user_role" EntityType="KeyMouseModel.sys_user_role" />
+          <EntitySet Name="t_f_data" EntityType="KeyMouseModel.t_f_data" />
+          <EntitySet Name="t_f_keymou" EntityType="KeyMouseModel.t_f_keymou" />
+          <EntitySet Name="t_f_userlogin" EntityType="KeyMouseModel.t_f_userlogin" />
+          <EntitySet Name="sys_role_function" EntityType="KeyMouseModel.sys_role_function" />
+        </EntityContainer>
+        <EntityType Name="dl_basic_user">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userphone" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userpwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jointime" Type="DateTime" Precision="3" />
+          <Property Name="isDel" Type="Boolean" />
+          <Property Name="comment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sys_function">
+          <Key>
+            <PropertyRef Name="fid" />
+          </Key>
+          <Property Name="fid" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pid" Type="Int32" />
+          <Property Name="function" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="control" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="functionname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parameters" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="order" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="level" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sys_role">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rolename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sys_user_role">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="userid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_f_data">
+          <Key>
+            <PropertyRef Name="did" />
+          </Key>
+          <Property Name="did" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="content" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="comment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="starttime" Type="DateTime" Precision="3" />
+          <Property Name="endtime" Type="DateTime" Precision="3" />
+          <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_f_keymou">
+          <Key>
+            <PropertyRef Name="kmid" />
+          </Key>
+          <Property Name="kmid" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="typekm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="starttime" Type="DateTime" Precision="3" />
+          <Property Name="time" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="relation" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="flag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="additional" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_f_userlogin">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="logintime" Type="DateTime" Precision="3" />
+          <Property Name="exittime" Type="DateTime" Precision="3" />
+          <Property Name="add_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="computer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="localland" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="temperature" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sys_role_function">
+          <Key>
+            <PropertyRef Name="fid" />
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="fid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="rid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KeyMouseModelStoreContainer" CdmEntityContainer="KeyMouseEntities">
+          <EntitySetMapping Name="dl_basic_user">
+            <EntityTypeMapping TypeName="KeyMouseModel.dl_basic_user">
+              <MappingFragment StoreEntitySet="dl_basic_user">
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="isDel" ColumnName="isDel" />
+                <ScalarProperty Name="jointime" ColumnName="jointime" />
+                <ScalarProperty Name="userpwd" ColumnName="userpwd" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="userphone" ColumnName="userphone" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_function">
+            <EntityTypeMapping TypeName="KeyMouseModel.sys_function">
+              <MappingFragment StoreEntitySet="sys_function">
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="parameters" ColumnName="parameters" />
+                <ScalarProperty Name="functionname" ColumnName="functionname" />
+                <ScalarProperty Name="control" ColumnName="control" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="function" ColumnName="function" />
+                <ScalarProperty Name="pid" ColumnName="pid" />
+                <ScalarProperty Name="fid" ColumnName="fid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_role">
+            <EntityTypeMapping TypeName="KeyMouseModel.sys_role">
+              <MappingFragment StoreEntitySet="sys_role">
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="rolename" ColumnName="rolename" />
+                <ScalarProperty Name="rid" ColumnName="rid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_user_role">
+            <EntityTypeMapping TypeName="KeyMouseModel.sys_user_role">
+              <MappingFragment StoreEntitySet="sys_user_role">
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="rid" ColumnName="rid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_f_data">
+            <EntityTypeMapping TypeName="KeyMouseModel.t_f_data">
+              <MappingFragment StoreEntitySet="t_f_data">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="endtime" ColumnName="endtime" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="did" ColumnName="did" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_f_keymou">
+            <EntityTypeMapping TypeName="KeyMouseModel.t_f_keymou">
+              <MappingFragment StoreEntitySet="t_f_keymou">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="additional" ColumnName="additional" />
+                <ScalarProperty Name="flag" ColumnName="flag" />
+                <ScalarProperty Name="relation" ColumnName="relation" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="typekm" ColumnName="typekm" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="kmid" ColumnName="kmid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_f_userlogin">
+            <EntityTypeMapping TypeName="KeyMouseModel.t_f_userlogin">
+              <MappingFragment StoreEntitySet="t_f_userlogin">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="temperature" ColumnName="temperature" />
+                <ScalarProperty Name="localland" ColumnName="localland" />
+                <ScalarProperty Name="computer" ColumnName="computer" />
+                <ScalarProperty Name="add_ip" ColumnName="add_ip" />
+                <ScalarProperty Name="exittime" ColumnName="exittime" />
+                <ScalarProperty Name="logintime" ColumnName="logintime" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_role_function">
+            <EntityTypeMapping TypeName="KeyMouseModel.sys_role_function">
+              <MappingFragment StoreEntitySet="sys_role_function">
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="rid" ColumnName="rid" />
+                <ScalarProperty Name="fid" ColumnName="fid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

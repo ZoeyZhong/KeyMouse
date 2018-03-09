@@ -1,0 +1,114 @@
+﻿@{
+    Layout = "~/Views/Shared/_Header.cshtml";
+}
+<script type="text/javascript">
+    var starttime = 0;
+    function getCurrentTime() {
+        var date = new Date();
+        var month = date.getMonth() + 1;
+
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var hours = date.getHours();
+        if (hours >= 0 && hours <= 9) {
+            if (hours == 0) {
+                hours = "00";
+            } else {
+                hours = "0" + hours;
+            }
+        }
+        var minutes = date.getMinutes();
+        if (minutes >= 0 && minutes <= 9) {
+            if (minutes == 0) {
+                minutes = "00";
+            } else {
+                minutes = "0" + minutes;
+            }
+        }
+        var seconds = date.getSeconds();
+        if (seconds >= 0 && seconds <= 9) {
+            if (seconds == 0) {
+                seconds = "00";
+            } else {
+                seconds = "0" + seconds;
+            }
+        }
+
+
+        var currentdate = date.getFullYear() + "." + month + "." + strDate + " " + hours + ":" + minutes + ":"  + seconds;
+
+        console.log(currentdate);
+        //2017.07.11 15:14:44
+        return currentdate;
+    }
+    function getstarttime()
+    {
+        //var myDate = new Date();
+        //starttime = myDate.toLocaleString();
+        starttime = getCurrentTime();
+    }
+    $(function () {
+        $('#btnSave').click(function () {
+            $.post("/Front/SaveNewPassage/?newPassage=" + $('#content').val() + 
+                                                 "&starttime=" + getCurrentTime(),
+                                                  "&userid=" + $('#userid').val(),
+                                                 function (result) {
+                                                      if (result.IsSucceed) {
+
+                                                          alert("保存成功！");
+                                                          $('#content').val('');
+                                                          setInterval(displaymessage, 3000);
+                                                      }
+                                                      else {
+                                                          alert("保存失败！");
+                                                      }
+
+                                                  });
+        });
+
+    });
+
+</script>
+<div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+        任务
+    </div>
+
+    <ol class="am-breadcrumb">
+        <li><a href="#" class="am-icon-user">任务</a></li>
+        <li class="am-active">写日记</li>
+    </ol>
+    <div class="tpl-portlet-components">
+
+        <div class="tpl-block ">
+            <div class="am-g tpl-amazeui-form">
+
+                <div class="am-u-sm-12 am-u-md-9">
+                    <form class="am-form am-form-horizontal">
+                        <input style=" display:none;" type="text" id="userid" value="@ViewData["userid"]">
+                        
+                        
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">内容 </label>
+
+                            <div class="am-u-sm-9">
+                                <textarea oninput="getstarttime()" style="height:350px;" class="" rows="5" id="content" placeholder="来吧，说点儿什么~（づ￣3￣）づ╭❤～"></textarea>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button id="btnSave" type="button" class="am-btn am-btn-primary">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

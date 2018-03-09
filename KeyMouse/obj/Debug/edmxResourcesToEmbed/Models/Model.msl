@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KeyMouseModelStoreContainer" CdmEntityContainer="KeyMouseEntities">
+    <EntitySetMapping Name="dl_basic_user">
+      <EntityTypeMapping TypeName="KeyMouseModel.dl_basic_user">
+        <MappingFragment StoreEntitySet="dl_basic_user">
+          <ScalarProperty Name="option3" ColumnName="option3" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="isDel" ColumnName="isDel" />
+          <ScalarProperty Name="jointime" ColumnName="jointime" />
+          <ScalarProperty Name="userpwd" ColumnName="userpwd" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="userphone" ColumnName="userphone" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sys_function">
+      <EntityTypeMapping TypeName="KeyMouseModel.sys_function">
+        <MappingFragment StoreEntitySet="sys_function">
+          <ScalarProperty Name="option3" ColumnName="option3" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="parameters" ColumnName="parameters" />
+          <ScalarProperty Name="functionname" ColumnName="functionname" />
+          <ScalarProperty Name="control" ColumnName="control" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="function" ColumnName="function" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="fid" ColumnName="fid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sys_role">
+      <EntityTypeMapping TypeName="KeyMouseModel.sys_role">
+        <MappingFragment StoreEntitySet="sys_role">
+          <ScalarProperty Name="option3" ColumnName="option3" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="rolename" ColumnName="rolename" />
+          <ScalarProperty Name="rid" ColumnName="rid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sys_user_role">
+      <EntityTypeMapping TypeName="KeyMouseModel.sys_user_role">
+        <MappingFragment StoreEntitySet="sys_user_role">
+          <ScalarProperty Name="option3" ColumnName="option3" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="rid" ColumnName="rid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_f_data">
+      <EntityTypeMapping TypeName="KeyMouseModel.t_f_data">
+        <MappingFragment StoreEntitySet="t_f_data">
+          <ScalarProperty Name="option5" ColumnName="option5" />
+          <ScalarProperty Name="option4" ColumnName="option4" />
+          <ScalarProperty Name="option3" ColumnName="option3" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="endtime" ColumnName="endtime" />
+          <ScalarProperty Name="starttime" ColumnName="starttime" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="did" ColumnName="did" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_f_keymou">
+      <EntityTypeMapping TypeName="KeyMouseModel.t_f_keymou">
+        <MappingFragment StoreEntitySet="t_f_keymou">
+          <ScalarProperty Name="option5" ColumnName="option5" />
+          <ScalarProperty Name="option4" ColumnName="option4" />
+          <ScalarProperty Name="option3" ColumnName="option3" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="additional" ColumnName="additional" />
+          <ScalarProperty Name="flag" ColumnName="flag" />
+          <ScalarProperty Name="relation" ColumnName="relation" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="starttime" ColumnName="starttime" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="action" ColumnName="action" />
+          <ScalarProperty Name="typekm" ColumnName="typekm" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="kmid" ColumnName="kmid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_f_userlogin">
+      <EntityTypeMapping TypeName="KeyMouseModel.t_f_userlogin">
+        <MappingFragment StoreEntitySet="t_f_userlogin">
+          <ScalarProperty Name="option5" ColumnName="option5" />
+          <ScalarProperty Name="option4" ColumnName="option4" />
+          <ScalarProperty Name="option3" ColumnName="option3" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="temperature" ColumnName="temperature" />
+          <ScalarProperty Name="localland" ColumnName="localland" />
+          <ScalarProperty Name="computer" ColumnName="computer" />
+          <ScalarProperty Name="add_ip" ColumnName="add_ip" />
+          <ScalarProperty Name="exittime" ColumnName="exittime" />
+          <ScalarProperty Name="logintime" ColumnName="logintime" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sys_role_function">
+      <EntityTypeMapping TypeName="KeyMouseModel.sys_role_function">
+        <MappingFragment StoreEntitySet="sys_role_function">
+          <ScalarProperty Name="option3" ColumnName="option3" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="rid" ColumnName="rid" />
+          <ScalarProperty Name="fid" ColumnName="fid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

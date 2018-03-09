@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>你的星球</title>
+    <link rel="icon" type="image/png" href="../../PIC/favicon.png">
+    <link href="../../Content/CSS/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../../Content/CSS/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="../../Content/CSS/flexslider.css" type="text/css" media="screen" />
+    <script src="../../Content/JS/jquery-1.11.1.min.js"></script>
+
+    <link rel="apple-touch-icon-precomposed" href="../../PIC/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="../../Content/CSS/amazeui.min.css" />
+    <link rel="stylesheet" href="../../Content/CSS/admin.css">
+    <link rel="stylesheet" href="../../Content/CSS/app.css">
+    <script src="../../Content/JS/echarts.min.js"></script>
+
+</head>
+<body data-type="index">
+    @Html.Partial("Header")
+
+    <div class="tpl-page-container tpl-page-header-fixed">
+
+        @Html.Partial("Left")
+
+        @RenderBody()
+    </div>
+        <script src="../../Content/JS/jquery.min.js"></script>
+        <script src="../../Content/JS/amazeui.min.js"></script>
+        <script src="../../Content/JS/iscroll.js"></script>
+        <script src="../../Content/JS/app.js"></script>
+</body>
+</html>

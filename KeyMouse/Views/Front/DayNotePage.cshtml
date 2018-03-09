@@ -1,0 +1,55 @@
+﻿@using KeyMouse.Models;
+@{
+    Layout = "~/Views/Shared/_Header.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+
+        $("#btnReturn").click(function () {
+            history.go(-1);
+        });
+    });
+</script>
+@using (Html.BeginForm("DayNotePage", "Front", FormMethod.Post))
+{ 
+    
+    <div class="tpl-content-wrapper">
+            <div class="tpl-portlet-components">
+                
+                <div class="tpl-block">
+                    <div class="am-g">
+                        <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <button id="btnReturn" type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-arrow-left"></span> 返回</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-title">                </div>
+                    <div class="am-g">
+                        <div class="am-u-sm-12">
+                            <form class="am-form">
+                                <div class="am-u-sm-12">
+                                    <div class="am-form-group">
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">日期：</label>@ViewData["endtime"]
+                                    </div>
+                                    <div class="am-form-group">
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">内容：</label>@Html.Raw(@ViewData["content"])
+
+                                    </div>
+                                </div>
+                                
+                                <hr>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tpl-alert"></div>
+            </div>
+        </div>
+}
+
+

@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "登录";
+    Layout = "";
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>登录(づ｡◕‿‿◕｡)づ</title>
+    <meta name="keywords" content="index" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <link rel="icon" type="image/png" href="../../PIC/favicon.png" />
+    <link rel="apple-touch-icon-precomposed" href="../../PIC/app-icon72x72@2x.png" />
+    <link rel="stylesheet" href="../../Content/CSS/amazeui.min.css" />
+    <link rel="stylesheet" href="../../Content/CSS/admin.css" />
+    <link rel="stylesheet" href="../../Content/CSS/app.css" />
+    <script src="../../Content/JS/jquery.min.js"></script>
+</head>
+<script type="text/javascript">
+    $(function () {
+        //登录按钮
+        $("#btnLogOn").click(function () {
+            $.ajax({
+                type: "post",
+                contentType: "application/json;utf-8",
+                dataType: "text",
+                url: "/Home/LogOn",
+                data: "{ userphone : \"" + $("#doc-ipt-tel-1").val() + "\"," +
+                                    " pwd:\"" + $("#doc-ipt-pwd-1").val() + "\"}",
+                success: function (result) {
+                    if (result == "success") {
+                        window.location.href = "/Home/Index";
+                    }
+                    else { alert("登录失败:" + result); }
+                },
+                error: function (statusText, responseText)   //  参数： statusText, responseText
+                {
+                    alert("服务器连接有误！" + responseText);
+                }
+            });
+        });
+    });
+</script>
+<html>
+<body data-type="login">
+    <div class="am-g myapp-login">
+        <div class="myapp-login-logo-block  tpl-login-max">
+            <div class="myapp-login-logo-text">
+                <div class="myapp-login-logo-text">
+                    <span> 登录(*╯3╰)</span>
+                </div>
+            </div>
+            <div class="login-font">            </div>
+            <div class="am-u-sm-10 login-am-center">
+                <form class="am-form">
+                    <fieldset>
+                        <div class="am-form-group">
+                            <input value="18324147809" type="tel" class="" id="doc-ipt-tel-1" placeholder="你的ID" />
+                        </div>
+                        <div class="am-form-group">
+                            <input value="12345" type="password" class="" id="doc-ipt-pwd-1" placeholder="你的符文" />
+                        </div>
+                        <p><a id="btnLogOn" class="am-btn am-btn-default">登录</a></p>
+                    </fieldset>
+                    <div class="login-font" style="text-align:right">
+                        <span> 没有ID？</span><a href="../Home/Regist"><i>加入星球</i></a>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
